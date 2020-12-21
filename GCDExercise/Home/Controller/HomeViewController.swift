@@ -18,8 +18,6 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let queue = DispatchQueue(label: "Serial")
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableView()
@@ -40,7 +38,7 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,12 +46,21 @@ extension HomeViewController: UITableViewDataSource {
             return HomeTableViewCell()
         }
         //task2
-        cell.tag = indexPath.row
-        cell.setImageFromUrl(ImageURL: data[indexPath.row % 5], index: indexPath.row)
-        
-        //task1
 //        cell.tag = indexPath.row
 //        cell.setImageFromUrl(ImageURL: data[indexPath.row % 5], index: indexPath.row)
+        
+        //task1
+        
+//        let group = DispatchGroup()
+//        group.enter()
+//        cell.tag = indexPath.row
+//        let url = URL(string: data[indexPath.row])
+//        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+//        cell.fruitImageView.image = UIImage(data: data!)
+//        group.leave()
+//        group.notify(queue: .global()) {
+//            print(indexPath.row)
+//        }
         return cell
     }
 }
