@@ -20,13 +20,11 @@ class HomeTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         fruitImageView.image = nil
-        if let activityIndicator = self.activityIndicator {
-            activityIndicator.startAnimating()
-        }
     }
     
     func setImageFromUrl(ImageURL :String, index: Int) {
         let queue = DispatchQueue(label: "Concurrent",qos: .background , attributes: .concurrent)
+        activityIndicator.startAnimating()
         queue.async {
             let task = URLSession.shared.dataTask( with: NSURL(string:ImageURL)! as URL, completionHandler: { (data, response, error) -> Void in
                 DispatchQueue.main.async {
